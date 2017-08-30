@@ -1,0 +1,40 @@
+com.rn.yamtt
+1080 2076
+
+delay 500
+down 100,500
+delay 500
+move 200,600
+delay 500
+up
+delay 500
+tap 300,700
+delay 1000
+
+down 100,500
+down#1 200,500
+delay 500
+up
+delay 500
+up#1
+
+delay 500
+down 100,500
+delay 500
+move 500,500,3000
+up
+
+down 100,100
+delay 500
+down#1 300,100
+delay 500
+down#2 500,100
+delay 500
+move 100,2000,1000
+move#1 300,2000,1000
+move#2 500,2000,1000
+up
+delay 500
+up#1
+delay 500
+up#2

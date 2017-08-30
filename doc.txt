@@ -1,0 +1,46 @@
+ACTION_CANCEL 3
+ACTION_DOWN 0
+ACTION_UP 1
+ACTION_HOVER_ENTER 9 //进入view
+ACTION_HOVER_MOVE 7 //在view上移动
+ACTION_MASK 255
+ACTION_MOVE 2
+ACTION_OUTSIDE 4
+ACTION_POINTER_1_DOWN 8//deprecated
+ACTION_POINTER_1_UP 6//deprecated
+ACTION_POINTER_2_DOWN 261//deprecated
+ACTION_POINTER_2_UP 262//deprecated
+ACTION_POINTER_3_DOWN 517//deprecated
+ACTION_POINTER_3_UP 518//deprecated
+ACTION_POINTER_DOWN 5//A non-primary pointer has gone down.
+ACTION_POINTER_UP 6//A non-primary pointer has gone up.
+ACTION_POINTER_ID_MASK 65280//deprecated
+ACTION_POINTER_ID_SHIFT 8//deprecated
+ACTION_POINTER_INDEX_MASK 65280//Bits in the action code that represent a pointer index, used with ACTION_POINTER_DOWN and ACTION_POINTER_UP
+ACTION_POINTER_INDEX_SHIFT 8//Bit shift for the action bits holding the pointer index as defined by ACTION_POINTER_INDEX_MASK.
+ACTION_SCROLL 8//The motion event contains relative vertical and/or horizontal scroll offsets
+
+public static MotionEvent obtain (long downTime, long eventTime, int action, float x, float y, float pressure, float size, int metaState, float xPrecision, float yPrecision, int deviceId, int edgeFlags)
+
+Added in API level 1
+Create a new MotionEvent, filling in all of the basic values that define the motion.
+
+Parameters
+downTime	The time (in ms) when the user originally pressed down to start a stream of position events. This must be obtained from uptimeMillis().
+eventTime	The the time (in ms) when this specific event was generated. This must be obtained from uptimeMillis().
+action	The kind of action being performed, such as ACTION_DOWN.
+x	The X coordinate of this event.
+y	The Y coordinate of this event.
+pressure	The current pressure of this event. The pressure generally ranges from 0 (no pressure at all) to 1 (normal pressure), however values higher than 1 may be generated depending on the calibration of the input device.
+size	A scaled value of the approximate size of the area being pressed when touched with the finger. The actual value in pixels corresponding to the finger touch is normalized with a device specific range of values and scaled to a value between 0 and 1.
+metaState	The state of any meta / modifier keys that were in effect when the event was generated.
+xPrecision	The precision of the X coordinate being reported.
+yPrecision	The precision of the Y coordinate being reported.
+deviceId	The id for the device that this event came from. An id of zero indicates that the event didn't come from a physical device; other numbers are arbitrary and you shouldn't depend on the values.
+edgeFlags	A bitfield indicating which edges, if any, were touched by this MotionEvent.
+
+
+https://my.oschina.net/banxi/blog/56421
+
+多点触控
+0x0n05 第n个点down，即261第二个点down，517第三个点down
