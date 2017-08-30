@@ -32,8 +32,8 @@ class Pointer:
 		return self.data
 		
 	def move(self,x,y):
-		self.x=x
-		self.y=y
+		self.x=round(x,2)
+		self.y=round(y,2)
 
 class Event:
 	LastTime=StartTime
@@ -78,7 +78,7 @@ class Event:
 		pt=Pointer(id)
 		pt.move(float(xy[0]),float(xy[1]))
 		self.eventpts.append(pt)
-		Event.Pointers.append(pt)
+		Event.Pointers.append(copy.deepcopy(pt))
 		return self
 
 	def up(self,id,arg):
@@ -100,8 +100,10 @@ class Event:
 		for pt in self.eventpts:
 			if pt.id==id:
 				xy=arg.split(',')
+				x=float(xy[0])
+				y=float(xy[1])
 				if len(xy)==2:
-					pt.move(float(xy[0]),float(xy[1]))
+					pt.move(x,y)
 				else:
 					evlist=[]
 					expiretime=int(xy[2])
@@ -115,11 +117,15 @@ class Event:
 						ev.settime(self.eventTime+PIECETIME*i)
 						ev.move(id,("%f,%f")%(pt.x+dx*(i+1),pt.y+dy*(i+1)))
 						evlist.append(ev)
-					pt.move(float(xy[0]),float(xy[1]))
+					pt.move(x,y)
 					self.settime(self.eventTime+expiretime)
 					Event.LastTime+=expiretime
 					evlist.append(self)
 					return evlist
+				for pt2 in Event.Pointers:
+					if pt2.id==id:
+						pt2.move(x,y)
+						break
 				break
 		return self
 
@@ -128,6 +134,7 @@ class Event:
 		newev=Event()
 		newev.up(id,arg)
 		newev.settime(self.eventTime+1)
+		Event.LastTime+=1
 		return self,newev
 
 	def delay(self,id,arg):

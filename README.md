@@ -6,12 +6,12 @@
 * * *
 
 ## 命令详解
-move 坐标x,坐标y  
-move 坐标x,坐标y,花费时间  
-down 坐标x,坐标y  
-up  
-tap 坐标x,坐标y  
-delay 等待时间  
+* move 坐标x,坐标y  
+* move 坐标x,坐标y,花费时间  
+* down 坐标x,坐标y  
+* up  
+* tap 坐标x,坐标y  
+* delay 等待时间  
 
 支持多点触控，命令分别是move#1-move#15、tap#1-tap#15、down#1-down#15、up#1-up#15,不带#相当于#0。  
   
