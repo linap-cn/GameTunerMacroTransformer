@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- coding:utf-8 -*-
 import zlib
-import sys,time
+import sys
 import json
 from collections import Iterable
 import copy
@@ -62,7 +62,7 @@ class Event:
 		for pt in self.eventpts:
 			pointer[str(i)]=pt.toDict()
 			i+=1
-		self.data["downTime"]=Event.DownTime
+		self.data["downTime"]=self.downTime
 		self.data["eventTime"]=self.eventTime
 		return self.data
 
@@ -114,6 +114,7 @@ class Event:
 					dy=(y-pt.y)/n
 					for i in range(0,int(n)):
 						ev=Event()
+						ev.downTime=self.downTime
 						ev.settime(self.eventTime+PIECETIME*i)
 						ev.move(id,("%f,%f")%(pt.x+dx*(i+1),pt.y+dy*(i+1)))
 						evlist.append(ev)
@@ -132,6 +133,7 @@ class Event:
 	def tap(self,id,arg):
 		self.down(id,arg)
 		newev=Event()
+		newev.downTime=self.downTime
 		newev.up(id,arg)
 		newev.settime(self.eventTime+1)
 		Event.LastTime+=1
@@ -144,6 +146,7 @@ class Event:
 	def parse(self,op,id,arg):
 		if not self.eventpts:
 			Event.DownTime=Event.LastTime
+		self.downTime=Event.DownTime
 		operator = {'down':self.down,'up':self.up,'move':self.move,'tap':self.tap,'delay':self.delay}
 		if op in operator:
 			self.settime(Event.LastTime)
