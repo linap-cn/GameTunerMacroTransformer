@@ -108,12 +108,15 @@ class Macro:
 			return filedata.decode("utf-8")
 	
 	def handledata(self,filedata):
-		pos=filedata.find('}')
+		pos=filedata.find('}{')
 		if pos==-1:
 			print("error data")
 			sys.exit(1)
 		headdata=filedata[:pos+1]
 		bodydata=filedata[pos+1:]
+		pos=bodydata.find('}{')
+		if pos!=-1:
+			bodydata=bodydata[:pos+1]
 		jsonhead=None
 		jsonbody=None
 		try:
